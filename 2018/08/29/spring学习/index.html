@@ -75,26 +75,26 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="叶渝泽" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="叶渝泽de博客" type="application/atom+xml" />
 
 
 
 
 
 
-<meta name="description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;开始对spring进行学习和归纳 spring模块结构">
+<meta name="description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;开始对spring进行学习和归纳">
 <meta name="keywords" content="spring">
 <meta property="og:type" content="article">
 <meta property="og:title" content="spring学习">
 <meta property="og:url" content="http://yoursite.com/2018/08/29/spring学习/index.html">
-<meta property="og:site_name" content="叶渝泽">
-<meta property="og:description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;开始对spring进行学习和归纳 spring模块结构">
+<meta property="og:site_name" content="叶渝泽de博客">
+<meta property="og:description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;开始对spring进行学习和归纳">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/image/spring模块结构.png">
-<meta property="og:updated_time" content="2018-08-30T10:25:29.432Z">
+<meta property="og:updated_time" content="2018-12-06T09:06:08.740Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spring学习">
-<meta name="twitter:description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;开始对spring进行学习和归纳 spring模块结构">
+<meta name="twitter:description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;开始对spring进行学习和归纳">
 <meta name="twitter:image" content="http://yoursite.com/image/spring模块结构.png">
 
 
@@ -131,7 +131,7 @@
 
 
 
-  <title>spring学习 | 叶渝泽</title>
+  <title>spring学习 | 叶渝泽de博客</title>
   
 
 
@@ -161,7 +161,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">叶渝泽</span>
+        <span class="site-title">叶渝泽de博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -291,13 +291,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/29/spring学习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="sighzh">
+      <meta itemprop="name" content="叶渝泽">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://img5.duitang.com/uploads/item/201412/28/20141228131249_chS2R.thumb.700_0.jpeg">
+      <meta itemprop="image" content="/images/67addd9c6c705a4034ff29829c43ee93.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="叶渝泽">
+      <meta itemprop="name" content="叶渝泽de博客">
     </span>
 
     
@@ -378,19 +378,20 @@
 
       
         <!-- toc -->
-<p>&#160; &#160; &#160; &#160;开始对spring进行学习和归纳<br><!-- toc --></p>
-<h2 id="spring模块结构"><a href="#spring模块结构" class="headerlink" title="spring模块结构"></a>spring模块结构</h2><p><img src="/image/spring模块结构.png" alt="spring模块结构"></p>
+<p>&#160; &#160; &#160; &#160;开始对spring进行学习和归纳</p>
 <a id="more"></a>
+<!-- toc -->
+<h2 id="spring模块结构"><a href="#spring模块结构" class="headerlink" title="spring模块结构"></a>spring模块结构</h2><p><img src="/image/spring模块结构.png" alt="spring模块结构"></p>
 <h3 id="IOC容器"><a href="#IOC容器" class="headerlink" title="IOC容器"></a>IOC容器</h3><h4 id="BeanFactory"><a href="#BeanFactory" class="headerlink" title="BeanFactory"></a>BeanFactory</h4><p>&#160; &#160; &#160;这是一个最简单的容器，它最主要的功能是为依赖注入提供支持，这个容器接口在org.springframework.beans.factory.BeanFactory中被定义。</p>
 <p>&#160; &#160; &#160; &#160;在Spring中，有大量对BeanFactory接口的实现。其中，最常被使用的是XmlBeanFactory类。这个容器从XML文件中读取配置元数据，由这些元数据来生成一个被配置化的系统或者应用。</p>
 <p>&#160; &#160; &#160; &#160;在资源宝贵的移动设备或者基于 applet 的应用当中， BeanFactory 会被优先选择。否则，一般使用的是ApplicationContext，除非你有更好的理由选择 BeanFactory。</p>
 <h4 id="一个简单的例子"><a href="#一个简单的例子" class="headerlink" title="一个简单的例子"></a>一个简单的例子</h4><p>&#160; &#160; &#160; &#160;在idea中创建一个java web程序(创建过程请参考：<a href="https://www.cnblogs.com/shindo/p/7272646.htmlv" target="_blank" rel="noopener">Intellij Idea 2017创建web项目及tomcat部署实战</a>)，程序名SpringDemo，在WEB-INF文件夹下创建classes文件夹和lib文件夹，在src文件夹下创建一个包com.springDemo。</p>
 <p>&#160; &#160; &#160; &#160;在包com.springDemo下创建HelloWorld.java和Main.java，在src文件夹下创建Beans.xml</p>
-<h5 id="HelloWorld-java"><a href="#HelloWorld-java" class="headerlink" title="HelloWorld.java"></a>HelloWorld.java</h5><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.springDemo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</span><br><span class="line">	<span class="keyword">String</span> word;</span><br><span class="line">	<span class="comment">//idea下按alt+Insert创建get和set方法，此处省略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="main-java"><a href="#main-java" class="headerlink" title="main.java"></a>main.java</h5><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package com.springDemo</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.<span class="keyword">factory</span>.InitializingBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.<span class="keyword">factory</span>.xml.XmlBeanFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.io.ClassPathResource;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="built_in">String</span>[] args) &#123;</span><br><span class="line">		XmlBeanFactory <span class="keyword">factory</span> = <span class="keyword">new</span> XmlBeanFactory(<span class="keyword">new</span> ClassPathResource(<span class="string">"Beans.xml"</span>));</span><br><span class="line">		HelloWorld hw = (HelloWorld) <span class="keyword">factory</span>.getBean(<span class="string">"helloWorld"</span>);</span><br><span class="line">		System.out.println(hw.getWord());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="Beans-xml"><a href="#Beans-xml" class="headerlink" title="Beans.xml"></a>Beans.xml</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"helloWorld"</span> <span class="attr">class</span>=<span class="string">"com.springDemo.HelloWorld"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"word"</span> <span class="attr">value</span>=<span class="string">"Hello World~"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="HelloWorld-java"><a href="#HelloWorld-java" class="headerlink" title="HelloWorld.java"></a>HelloWorld.java</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package com.springDemo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class HelloWorld&#123;</span><br><span class="line">	String word;</span><br><span class="line">	//idea下按alt+Insert创建get和set方法，此处省略</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="main-java"><a href="#main-java" class="headerlink" title="main.java"></a>main.java</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package com.springDemo</span><br><span class="line">import org.springframework.beans.factory.InitializingBean;</span><br><span class="line">import org.springframework.beans.factory.xml.XmlBeanFactory;</span><br><span class="line">import org.springframework.core.io.ClassPathResource;</span><br><span class="line"></span><br><span class="line">public class Main&#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(&quot;Beans.xml&quot;));</span><br><span class="line">		HelloWorld hw = (HelloWorld) factory.getBean(&quot;helloWorld&quot;);</span><br><span class="line">		System.out.println(hw.getWord());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="Beans-xml"><a href="#Beans-xml" class="headerlink" title="Beans.xml"></a>Beans.xml</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</span><br><span class="line">    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;&gt;</span><br><span class="line">    &lt;bean id=&quot;helloWorld&quot; class=&quot;com.springDemo.HelloWorld&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;word&quot; value=&quot;Hello World~&quot; /&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">&lt;beans&gt;</span><br></pre></td></tr></table></figure>
 <p>&#160; &#160; &#160; &#160;运行main.java，结果如下:</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Hello</span> World~</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Hello World~</span><br></pre></td></tr></table></figure>
 <h4 id="ApplicationContext"><a href="#ApplicationContext" class="headerlink" title="ApplicationContext"></a>ApplicationContext</h4><p>&#160; &#160; &#160; &#160;ApplicationContext是spring中比较高级的容器。和BeanFactory类似，它可以加载配置文件中定义的bean，将所有的bean集中在一起，在请求的时候分配bean。另外，它增加了企业所需要的功能，比如，从属性文件中解析文本信息和将事件传递给所指定的监听器。这个容器在org.springframework.context.ApplicationContext interface接口中定义。</p>
 <p>&#160; &#160; ApplicationContext包含了BeanFactory所有的功能，一般情况下都使用更优秀的ApplicationContext容器，但在轻量级应用中，比如移动设备和基于applet的应用程序中使用BeanFactory。</p>
 <p>&#160; &#160; &#160; &#160;最常被使用的 ApplicationContext 接口实现：</p>
@@ -402,8 +403,8 @@
 <li><p>WebXmlApplicationContext：该容器会在一个 web 应用程序的范围内加载在 XML 文件中已被定义的 bean。</p>
 </li>
 </ul>
-<h4 id="一个简单的例子-1"><a href="#一个简单的例子-1" class="headerlink" title="一个简单的例子"></a>一个简单的例子</h4><h5 id="FileSystemXmlApplicationContext"><a href="#FileSystemXmlApplicationContext" class="headerlink" title="FileSystemXmlApplicationContext"></a>FileSystemXmlApplicationContext</h5><p>&#160; &#160; &#160; &#160;只需要按下面的代码更改上一节中main方法中的内容就行了，再导入相关的包就行了。导包就不在此叙述了。<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext <span class="built_in">context</span> = new FileSystemXmlApplicationContext</span><br><span class="line">      (<span class="string">"src/Beans.xml"</span>)<span class="comment">;</span></span><br><span class="line">HelloWorld obj = (HelloWorld) <span class="built_in">context</span>.getBean(<span class="string">"helloWorld"</span>)<span class="comment">;</span></span><br><span class="line">obj.getMessage()<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
-<h5 id="ClassPathXmlApplicationContext"><a href="#ClassPathXmlApplicationContext" class="headerlink" title="ClassPathXmlApplicationContext"></a>ClassPathXmlApplicationContext</h5><p>&#160; &#160; &#160; &#160;同上，不过你得保证你的xml文件路径能被classpath找到，我就在这里被坑了一下，解决办法是：将Beans.xml文件复制在WEB-INF/classes文件夹下，原因是这是classpath的根路径。<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext <span class="built_in">context</span> = new ClassPathXmlApplicationContext</span><br><span class="line">      (<span class="string">"Beans.xml"</span>)<span class="comment">;</span></span><br><span class="line">HelloWorld obj = (HelloWorld) <span class="built_in">context</span>.getBean(<span class="string">"helloWorld"</span>)<span class="comment">;</span></span><br><span class="line">obj.getMessage()<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="一个简单的例子-1"><a href="#一个简单的例子-1" class="headerlink" title="一个简单的例子"></a>一个简单的例子</h4><h5 id="FileSystemXmlApplicationContext"><a href="#FileSystemXmlApplicationContext" class="headerlink" title="FileSystemXmlApplicationContext"></a>FileSystemXmlApplicationContext</h5><p>&#160; &#160; &#160; &#160;只需要按下面的代码更改上一节中main方法中的内容就行了，再导入相关的包就行了。导包就不在此叙述了。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ApplicationContext context = new FileSystemXmlApplicationContext</span><br><span class="line">      (&quot;src/Beans.xml&quot;);</span><br><span class="line">HelloWorld obj = (HelloWorld) context.getBean(&quot;helloWorld&quot;);</span><br><span class="line">obj.getMessage();</span><br></pre></td></tr></table></figure></p>
+<h5 id="ClassPathXmlApplicationContext"><a href="#ClassPathXmlApplicationContext" class="headerlink" title="ClassPathXmlApplicationContext"></a>ClassPathXmlApplicationContext</h5><p>&#160; &#160; &#160; &#160;同上，不过你得保证你的xml文件路径能被classpath找到，我就在这里被坑了一下，解决办法是：将Beans.xml文件复制在WEB-INF/classes文件夹下，原因是这是classpath的根路径。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ApplicationContext context = new ClassPathXmlApplicationContext</span><br><span class="line">      (&quot;Beans.xml&quot;);</span><br><span class="line">HelloWorld obj = (HelloWorld) context.getBean(&quot;helloWorld&quot;);</span><br><span class="line">obj.getMessage();</span><br></pre></td></tr></table></figure></p>
 <h5 id="WebXmlXmlApplicationContext"><a href="#WebXmlXmlApplicationContext" class="headerlink" title="WebXmlXmlApplicationContext"></a>WebXmlXmlApplicationContext</h5><p>&#160; &#160; &#160; &#160;由于WebXmlXmlApplicationContext在一个web应用程序的范围内加载bean。因此我这里就不演示了（其实我也不会 (*~m~)）。</p>
 <h4 id="Bean的作用域"><a href="#Bean的作用域" class="headerlink" title="Bean的作用域"></a>Bean的作用域</h4><p>&#160; &#160; &#160; &#160;当在 Spring 中定义一个 bean 时，你必须声明该 bean 的作用域的选项。例如，为了强制 Spring 在每次需要时都产生一个新的 bean 实例，你应该声明 bean 的作用域的属性为 prototype。同理，如果你想让 Spring 在每次需要时都返回同一个bean实例，你应该声明 bean 的作用域的属性为 singleton。</p>
 <ul>
@@ -413,18 +414,19 @@
 <li>session&#160; &#160; &#160; &#160; 同一个HTTP Session共享一个Bean，不同Session使用不同的Bean，仅适用于WebApplicationContext环境</li>
 <li>global-session  &#160; &#160; &#160; &#160; 一般用于Portlet应用环境，改作用于仅适用于WebApplicationContext环境</li>
 </ul>
-<h5 id="scope使用方法"><a href="#scope使用方法" class="headerlink" title="scope使用方法"></a>scope使用方法</h5><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean <span class="attribute">id</span>=<span class="string">"helloWorld"</span> <span class="attribute">class</span>=<span class="string">"com.tutorialspoint.HelloWorld"</span> </span><br><span class="line">      <span class="attribute">scope</span>=<span class="string">"singleton"</span>&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h5><p>&#160; &#160; &#160; &#160;你可以简单地实现上述接口和初始化工作可以在 afterPropertiesSet() 方法中执行，如下所示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleBean</span> <span class="keyword">implements</span> <span class="title">InitializingBean</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterPropertiesSet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="comment">// do some initialization work</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>&#160; &#160; &#160; &#160;<br>在基于 XML 的配置元数据的情况下，你可以使用 init-method 属性来指定带有 void 无参数方法的名称。例如：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean <span class="attribute">id</span>=<span class="string">"exampleBean"</span> </span><br><span class="line">         <span class="attribute">class</span>=<span class="string">"examples.ExampleBean"</span> <span class="attribute">init-method</span>=<span class="string">"init"</span>/&gt;</span><br></pre></td></tr></table></figure></p>
-<p>&#160; &#160; &#160; &#160;下面是类的定义：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleBean</span> &#123;</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="comment">// do some initialization work</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h5 id="销毁"><a href="#销毁" class="headerlink" title="销毁"></a>销毁</h5><p>&#160; &#160; &#160; &#160;你可以简单地实现上述接口并且结束工作可以在 destroy() 方法中执行，如下所示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleBean</span> <span class="keyword">implements</span> <span class="title">DisposableBean</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="comment">// do some destruction work</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>&#160; &#160; &#160; &#160;在基于 XML 的配置元数据的情况下，你可以使用 destroy-method 属性来指定带有 void 无参数方法的名称。例如：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean <span class="attribute">id</span>=<span class="string">"exampleBean"</span></span><br><span class="line">         <span class="attribute">class</span>=<span class="string">"examples.ExampleBean"</span> <span class="attribute">destroy-method</span>=<span class="string">"destroy"</span>/&gt;</span><br></pre></td></tr></table></figure></p>
-<p>&#160; &#160; &#160; &#160;下面是类的定义：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleBean</span> &#123;</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="comment">// do some destruction work</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h5 id="下面是例子"><a href="#下面是例子" class="headerlink" title="下面是例子"></a>下面是例子</h5><p>xml文件<br><figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=<span class="string">"helloWorld"</span> </span><br><span class="line">       <span class="class"><span class="keyword">class</span>="<span class="title">com</span>.<span class="title">tutorialspoint</span>.<span class="title">HelloWorld</span>"</span></span><br><span class="line">       init-<span class="function"><span class="keyword">method</span>=</span><span class="string">"init"</span> destroy-<span class="function"><span class="keyword">method</span>=</span><span class="string">"destroy"</span>&gt;</span><br><span class="line">       &lt;<span class="keyword">property</span> name=<span class="string">"message"</span> value=<span class="string">"Hello World!"</span>/&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br></pre></td></tr></table></figure></p>
-<p>HelloWorld文件：添加下列方法<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      System.<span class="keyword">out</span>.println(<span class="string">"Bean is going through init."</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      System.<span class="keyword">out</span>.println(<span class="string">"Bean will destroy now."</span>);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
-<p>&#160; &#160; &#160; &#160;下面是 Main.java 文件的内容。在这里，你需要注册一个在 AbstractApplicationContext 类中声明的关闭 hook 的 registerShutdownHook() 方法。它将确保正常关闭，并且调用相关的 destroy 方法。<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AbstractApplicationContext <span class="built_in">context</span> = new ClassPathXmlApplicationContext(<span class="string">"Beans.xml"</span>)<span class="comment">;</span></span><br><span class="line">      HelloWorld obj = (HelloWorld) <span class="built_in">context</span>.getBean(<span class="string">"helloWorld"</span>)<span class="comment">;</span></span><br><span class="line">      obj.getMessage()<span class="comment">;</span></span><br><span class="line">      <span class="built_in">context</span>.registerShutdownHook()<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
-<h5 id="默认的初始化和销毁方法"><a href="#默认的初始化和销毁方法" class="headerlink" title="默认的初始化和销毁方法"></a>默认的初始化和销毁方法</h5><p>&#160; &#160; &#160; &#160;如果你有太多具有相同名称的初始化或者销毁方法的 Bean，那么你不需要在每一个 bean 上声明初始化方法和销毁方法。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">default-init-method</span>=<span class="string">"init"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">default-destroy-method</span>=<span class="string">"destroy"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"..."</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span></span><br><span class="line">       <span class="comment">&lt;!-- collaborators and configuration for this bean go here --&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="定义继承"><a href="#定义继承" class="headerlink" title="定义继承"></a>定义继承</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;helloIndia&quot; class=&quot;com.tutorialspoint.HelloIndia&quot; parent=&quot;helloWorld&quot;&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="scope使用方法"><a href="#scope使用方法" class="headerlink" title="scope使用方法"></a>scope使用方法</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;bean id=&quot;helloWorld&quot; class=&quot;com.tutorialspoint.HelloWorld&quot; </span><br><span class="line">      scope=&quot;singleton&quot;&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h5><p>&#160; &#160; &#160; &#160;你可以简单地实现上述接口和初始化工作可以在 afterPropertiesSet() 方法中执行，如下所示：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class ExampleBean implements InitializingBean &#123;</span><br><span class="line">   public void afterPropertiesSet() &#123;</span><br><span class="line">      // do some initialization work</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&#160; &#160; &#160; &#160;<br>在基于 XML 的配置元数据的情况下，你可以使用 init-method 属性来指定带有 void 无参数方法的名称。例如：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;bean id=&quot;exampleBean&quot; </span><br><span class="line">         class=&quot;examples.ExampleBean&quot; init-method=&quot;init&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>&#160; &#160; &#160; &#160;下面是类的定义：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class ExampleBean &#123;</span><br><span class="line">   public void init() &#123;</span><br><span class="line">      // do some initialization work</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="销毁"><a href="#销毁" class="headerlink" title="销毁"></a>销毁</h5><p>&#160; &#160; &#160; &#160;你可以简单地实现上述接口并且结束工作可以在 destroy() 方法中执行，如下所示：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class ExampleBean implements DisposableBean &#123;</span><br><span class="line">   public void destroy() &#123;</span><br><span class="line">      // do some destruction work</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&#160; &#160; &#160; &#160;在基于 XML 的配置元数据的情况下，你可以使用 destroy-method 属性来指定带有 void 无参数方法的名称。例如：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;bean id=&quot;exampleBean&quot;</span><br><span class="line">         class=&quot;examples.ExampleBean&quot; destroy-method=&quot;destroy&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>&#160; &#160; &#160; &#160;下面是类的定义：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class ExampleBean &#123;</span><br><span class="line">   public void destroy() &#123;</span><br><span class="line">      // do some destruction work</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="下面是例子"><a href="#下面是例子" class="headerlink" title="下面是例子"></a>下面是例子</h5><p>xml文件<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;bean id=&quot;helloWorld&quot; </span><br><span class="line">       class=&quot;com.tutorialspoint.HelloWorld&quot;</span><br><span class="line">       init-method=&quot;init&quot; destroy-method=&quot;destroy&quot;&gt;</span><br><span class="line">       &lt;property name=&quot;message&quot; value=&quot;Hello World!&quot;/&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br></pre></td></tr></table></figure></p>
+<p>HelloWorld文件：添加下列方法<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public void init()&#123;</span><br><span class="line">      System.out.println(&quot;Bean is going through init.&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">   public void destroy()&#123;</span><br><span class="line">      System.out.println(&quot;Bean will destroy now.&quot;);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>&#160; &#160; &#160; &#160;下面是 Main.java 文件的内容。在这里，你需要注册一个在 AbstractApplicationContext 类中声明的关闭 hook 的 registerShutdownHook() 方法。它将确保正常关闭，并且调用相关的 destroy 方法。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AbstractApplicationContext context = new ClassPathXmlApplicationContext(&quot;Beans.xml&quot;);</span><br><span class="line">      HelloWorld obj = (HelloWorld) context.getBean(&quot;helloWorld&quot;);</span><br><span class="line">      obj.getMessage();</span><br><span class="line">      context.registerShutdownHook();</span><br></pre></td></tr></table></figure></p>
+<h5 id="默认的初始化和销毁方法"><a href="#默认的初始化和销毁方法" class="headerlink" title="默认的初始化和销毁方法"></a>默认的初始化和销毁方法</h5><p>&#160; &#160; &#160; &#160;如果你有太多具有相同名称的初始化或者销毁方法的 Bean，那么你不需要在每一个 bean 上声明初始化方法和销毁方法。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</span><br><span class="line">    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;</span><br><span class="line">    default-init-method=&quot;init&quot; </span><br><span class="line">    default-destroy-method=&quot;destroy&quot;&gt;</span><br><span class="line"></span><br><span class="line">   &lt;bean id=&quot;...&quot; class=&quot;...&quot;&gt;</span><br><span class="line">       &lt;!-- collaborators and configuration for this bean go here --&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="定义继承"><a href="#定义继承" class="headerlink" title="定义继承"></a>定义继承</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;bean id=&quot;helloIndia&quot; class=&quot;com.tutorialspoint.HelloIndia&quot; parent=&quot;helloWorld&quot;&gt;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -454,8 +456,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/29/springboot学习(一)/" rel="next" title="springboot学习(一)">
-                <i class="fa fa-chevron-left"></i> springboot学习(一)
+              <a href="/2018/08/28/Springboot-Mybatis实例/" rel="next" title="Springboot Mybatis实例">
+                <i class="fa fa-chevron-left"></i> Springboot Mybatis实例
               </a>
             
           </div>
@@ -463,6 +465,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/06/AngularJS/" rel="prev" title="direcitve实现输入限制">
+                direcitve实现输入限制 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -529,10 +535,10 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="http://img5.duitang.com/uploads/item/201412/28/20141228131249_chS2R.thumb.700_0.jpeg"
-                alt="sighzh" />
+                src="/images/67addd9c6c705a4034ff29829c43ee93.jpeg"
+                alt="叶渝泽" />
             
-              <p class="site-author-name" itemprop="name">sighzh</p>
+              <p class="site-author-name" itemprop="name">叶渝泽</p>
               <p class="site-description motion-element" itemprop="description">初入门的小菜鸟❤</p>
           </div>
 
@@ -543,7 +549,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -554,7 +560,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -678,11 +684,11 @@
 
 
 
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">sighzh</span>
+  <span class="author" itemprop="copyrightHolder">叶渝泽</span>
 
 <!--  
   -->
@@ -701,7 +707,7 @@
 
   <div class="powered-by"></div>
 
-  <span class="post-count">博客全站共5.4k字</span>
+  <span class="post-count">博客全站共5.1k字</span>
 
 
 
@@ -869,7 +875,7 @@
 
   
 
-  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>	
 <script type="text/javascript" src="/js/src/custom.js"></script>
 
   <!--崩溃欺骗-->
