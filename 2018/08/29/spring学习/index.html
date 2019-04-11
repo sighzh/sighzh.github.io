@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+   <!-- 添加的代码 -->
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="spring," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="叶渝泽" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;开始对spring进行学习和归纳 spring模块结构">
+<meta name="keywords" content="spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring学习">
+<meta property="og:url" content="http://yoursite.com/2018/08/29/spring学习/index.html">
+<meta property="og:site_name" content="叶渝泽">
+<meta property="og:description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;开始对spring进行学习和归纳 spring模块结构">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/image/spring模块结构.png">
+<meta property="og:updated_time" content="2018-08-30T10:25:29.432Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="spring学习">
+<meta name="twitter:description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;开始对spring进行学习和归纳 spring模块结构">
+<meta name="twitter:image" content="http://yoursite.com/image/spring模块结构.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"perspectiveRightIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/29/spring学习/"/>
+
+
+
+
+
+  <title>spring学习 | 叶渝泽</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">叶渝泽</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我的幻想更宽，寂寞也就更大了。～～苍山雪,洱海月,洱海月照苍山雪。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/29/spring学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sighzh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://img5.duitang.com/uploads/item/201412/28/20141228131249_chS2R.thumb.700_0.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="叶渝泽">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">spring学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-29T16:19:52+08:00">
+                2018-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!-- toc -->
+<p>&#160; &#160; &#160; &#160;开始对spring进行学习和归纳<br><!-- toc --></p>
+<h2 id="spring模块结构"><a href="#spring模块结构" class="headerlink" title="spring模块结构"></a>spring模块结构</h2><p><img src="/image/spring模块结构.png" alt="spring模块结构"></p>
+<a id="more"></a>
+<h3 id="IOC容器"><a href="#IOC容器" class="headerlink" title="IOC容器"></a>IOC容器</h3><h4 id="BeanFactory"><a href="#BeanFactory" class="headerlink" title="BeanFactory"></a>BeanFactory</h4><p>&#160; &#160; &#160;这是一个最简单的容器，它最主要的功能是为依赖注入提供支持，这个容器接口在org.springframework.beans.factory.BeanFactory中被定义。</p>
+<p>&#160; &#160; &#160; &#160;在Spring中，有大量对BeanFactory接口的实现。其中，最常被使用的是XmlBeanFactory类。这个容器从XML文件中读取配置元数据，由这些元数据来生成一个被配置化的系统或者应用。</p>
+<p>&#160; &#160; &#160; &#160;在资源宝贵的移动设备或者基于 applet 的应用当中， BeanFactory 会被优先选择。否则，一般使用的是ApplicationContext，除非你有更好的理由选择 BeanFactory。</p>
+<h4 id="一个简单的例子"><a href="#一个简单的例子" class="headerlink" title="一个简单的例子"></a>一个简单的例子</h4><p>&#160; &#160; &#160; &#160;在idea中创建一个java web程序(创建过程请参考：<a href="https://www.cnblogs.com/shindo/p/7272646.htmlv" target="_blank" rel="noopener">Intellij Idea 2017创建web项目及tomcat部署实战</a>)，程序名SpringDemo，在WEB-INF文件夹下创建classes文件夹和lib文件夹，在src文件夹下创建一个包com.springDemo。</p>
+<p>&#160; &#160; &#160; &#160;在包com.springDemo下创建HelloWorld.java和Main.java，在src文件夹下创建Beans.xml</p>
+<h5 id="HelloWorld-java"><a href="#HelloWorld-java" class="headerlink" title="HelloWorld.java"></a>HelloWorld.java</h5><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.springDemo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</span><br><span class="line">	<span class="keyword">String</span> word;</span><br><span class="line">	<span class="comment">//idea下按alt+Insert创建get和set方法，此处省略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="main-java"><a href="#main-java" class="headerlink" title="main.java"></a>main.java</h5><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package com.springDemo</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.<span class="keyword">factory</span>.InitializingBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.<span class="keyword">factory</span>.xml.XmlBeanFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.io.ClassPathResource;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="built_in">String</span>[] args) &#123;</span><br><span class="line">		XmlBeanFactory <span class="keyword">factory</span> = <span class="keyword">new</span> XmlBeanFactory(<span class="keyword">new</span> ClassPathResource(<span class="string">"Beans.xml"</span>));</span><br><span class="line">		HelloWorld hw = (HelloWorld) <span class="keyword">factory</span>.getBean(<span class="string">"helloWorld"</span>);</span><br><span class="line">		System.out.println(hw.getWord());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="Beans-xml"><a href="#Beans-xml" class="headerlink" title="Beans.xml"></a>Beans.xml</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"helloWorld"</span> <span class="attr">class</span>=<span class="string">"com.springDemo.HelloWorld"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"word"</span> <span class="attr">value</span>=<span class="string">"Hello World~"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&#160; &#160; &#160; &#160;运行main.java，结果如下:</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Hello</span> World~</span><br></pre></td></tr></table></figure>
+<h4 id="ApplicationContext"><a href="#ApplicationContext" class="headerlink" title="ApplicationContext"></a>ApplicationContext</h4><p>&#160; &#160; &#160; &#160;ApplicationContext是spring中比较高级的容器。和BeanFactory类似，它可以加载配置文件中定义的bean，将所有的bean集中在一起，在请求的时候分配bean。另外，它增加了企业所需要的功能，比如，从属性文件中解析文本信息和将事件传递给所指定的监听器。这个容器在org.springframework.context.ApplicationContext interface接口中定义。</p>
+<p>&#160; &#160; ApplicationContext包含了BeanFactory所有的功能，一般情况下都使用更优秀的ApplicationContext容器，但在轻量级应用中，比如移动设备和基于applet的应用程序中使用BeanFactory。</p>
+<p>&#160; &#160; &#160; &#160;最常被使用的 ApplicationContext 接口实现：</p>
+<ul>
+<li><p>FileSystemXmlApplicationContext：该容器从 XML 文件中加载已被定义的 bean。在这里，你需要提供给构造器 XML 文件的完整路径。</p>
+</li>
+<li><p>ClassPathXmlApplicationContext：该容器从 XML 文件中加载已被定义的 bean。在这里，你不需要提供 XML 文件的完整路径，只需正确配置 CLASSPATH 环境变量即可，因为，容器会从 CLASSPATH 中搜索 bean 配置文件。</p>
+</li>
+<li><p>WebXmlApplicationContext：该容器会在一个 web 应用程序的范围内加载在 XML 文件中已被定义的 bean。</p>
+</li>
+</ul>
+<h4 id="一个简单的例子-1"><a href="#一个简单的例子-1" class="headerlink" title="一个简单的例子"></a>一个简单的例子</h4><h5 id="FileSystemXmlApplicationContext"><a href="#FileSystemXmlApplicationContext" class="headerlink" title="FileSystemXmlApplicationContext"></a>FileSystemXmlApplicationContext</h5><p>&#160; &#160; &#160; &#160;只需要按下面的代码更改上一节中main方法中的内容就行了，再导入相关的包就行了。导包就不在此叙述了。<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext <span class="built_in">context</span> = new FileSystemXmlApplicationContext</span><br><span class="line">      (<span class="string">"src/Beans.xml"</span>)<span class="comment">;</span></span><br><span class="line">HelloWorld obj = (HelloWorld) <span class="built_in">context</span>.getBean(<span class="string">"helloWorld"</span>)<span class="comment">;</span></span><br><span class="line">obj.getMessage()<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="ClassPathXmlApplicationContext"><a href="#ClassPathXmlApplicationContext" class="headerlink" title="ClassPathXmlApplicationContext"></a>ClassPathXmlApplicationContext</h5><p>&#160; &#160; &#160; &#160;同上，不过你得保证你的xml文件路径能被classpath找到，我就在这里被坑了一下，解决办法是：将Beans.xml文件复制在WEB-INF/classes文件夹下，原因是这是classpath的根路径。<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext <span class="built_in">context</span> = new ClassPathXmlApplicationContext</span><br><span class="line">      (<span class="string">"Beans.xml"</span>)<span class="comment">;</span></span><br><span class="line">HelloWorld obj = (HelloWorld) <span class="built_in">context</span>.getBean(<span class="string">"helloWorld"</span>)<span class="comment">;</span></span><br><span class="line">obj.getMessage()<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="WebXmlXmlApplicationContext"><a href="#WebXmlXmlApplicationContext" class="headerlink" title="WebXmlXmlApplicationContext"></a>WebXmlXmlApplicationContext</h5><p>&#160; &#160; &#160; &#160;由于WebXmlXmlApplicationContext在一个web应用程序的范围内加载bean。因此我这里就不演示了（其实我也不会 (*~m~)）。</p>
+<h4 id="Bean的作用域"><a href="#Bean的作用域" class="headerlink" title="Bean的作用域"></a>Bean的作用域</h4><p>&#160; &#160; &#160; &#160;当在 Spring 中定义一个 bean 时，你必须声明该 bean 的作用域的选项。例如，为了强制 Spring 在每次需要时都产生一个新的 bean 实例，你应该声明 bean 的作用域的属性为 prototype。同理，如果你想让 Spring 在每次需要时都返回同一个bean实例，你应该声明 bean 的作用域的属性为 singleton。</p>
+<ul>
+<li>singleton     &#160; &#160; &#160; &#160; 在spring IoC容器仅存在一个Bean实例，Bean以单例方式存在，默认值</li>
+<li>prototype     &#160; &#160; &#160; &#160; 每次从容器中调用Bean时，都返回一个新的实例，即每次调用getBean()时，相当于执行newXxxBean()</li>
+<li>request  &#160; &#160;每次HTTP请求都会创建一个新的Bean，该作用域仅适用于WebApplicationContext环境</li>
+<li>session&#160; &#160; &#160; &#160; 同一个HTTP Session共享一个Bean，不同Session使用不同的Bean，仅适用于WebApplicationContext环境</li>
+<li>global-session  &#160; &#160; &#160; &#160; 一般用于Portlet应用环境，改作用于仅适用于WebApplicationContext环境</li>
+</ul>
+<h5 id="scope使用方法"><a href="#scope使用方法" class="headerlink" title="scope使用方法"></a>scope使用方法</h5><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean <span class="attribute">id</span>=<span class="string">"helloWorld"</span> <span class="attribute">class</span>=<span class="string">"com.tutorialspoint.HelloWorld"</span> </span><br><span class="line">      <span class="attribute">scope</span>=<span class="string">"singleton"</span>&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h5><p>&#160; &#160; &#160; &#160;你可以简单地实现上述接口和初始化工作可以在 afterPropertiesSet() 方法中执行，如下所示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleBean</span> <span class="keyword">implements</span> <span class="title">InitializingBean</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterPropertiesSet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="comment">// do some initialization work</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&#160; &#160; &#160; &#160;<br>在基于 XML 的配置元数据的情况下，你可以使用 init-method 属性来指定带有 void 无参数方法的名称。例如：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean <span class="attribute">id</span>=<span class="string">"exampleBean"</span> </span><br><span class="line">         <span class="attribute">class</span>=<span class="string">"examples.ExampleBean"</span> <span class="attribute">init-method</span>=<span class="string">"init"</span>/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>&#160; &#160; &#160; &#160;下面是类的定义：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleBean</span> &#123;</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="comment">// do some initialization work</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="销毁"><a href="#销毁" class="headerlink" title="销毁"></a>销毁</h5><p>&#160; &#160; &#160; &#160;你可以简单地实现上述接口并且结束工作可以在 destroy() 方法中执行，如下所示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleBean</span> <span class="keyword">implements</span> <span class="title">DisposableBean</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="comment">// do some destruction work</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&#160; &#160; &#160; &#160;在基于 XML 的配置元数据的情况下，你可以使用 destroy-method 属性来指定带有 void 无参数方法的名称。例如：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean <span class="attribute">id</span>=<span class="string">"exampleBean"</span></span><br><span class="line">         <span class="attribute">class</span>=<span class="string">"examples.ExampleBean"</span> <span class="attribute">destroy-method</span>=<span class="string">"destroy"</span>/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>&#160; &#160; &#160; &#160;下面是类的定义：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleBean</span> &#123;</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="comment">// do some destruction work</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="下面是例子"><a href="#下面是例子" class="headerlink" title="下面是例子"></a>下面是例子</h5><p>xml文件<br><figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=<span class="string">"helloWorld"</span> </span><br><span class="line">       <span class="class"><span class="keyword">class</span>="<span class="title">com</span>.<span class="title">tutorialspoint</span>.<span class="title">HelloWorld</span>"</span></span><br><span class="line">       init-<span class="function"><span class="keyword">method</span>=</span><span class="string">"init"</span> destroy-<span class="function"><span class="keyword">method</span>=</span><span class="string">"destroy"</span>&gt;</span><br><span class="line">       &lt;<span class="keyword">property</span> name=<span class="string">"message"</span> value=<span class="string">"Hello World!"</span>/&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br></pre></td></tr></table></figure></p>
+<p>HelloWorld文件：添加下列方法<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      System.<span class="keyword">out</span>.println(<span class="string">"Bean is going through init."</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      System.<span class="keyword">out</span>.println(<span class="string">"Bean will destroy now."</span>);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>&#160; &#160; &#160; &#160;下面是 Main.java 文件的内容。在这里，你需要注册一个在 AbstractApplicationContext 类中声明的关闭 hook 的 registerShutdownHook() 方法。它将确保正常关闭，并且调用相关的 destroy 方法。<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AbstractApplicationContext <span class="built_in">context</span> = new ClassPathXmlApplicationContext(<span class="string">"Beans.xml"</span>)<span class="comment">;</span></span><br><span class="line">      HelloWorld obj = (HelloWorld) <span class="built_in">context</span>.getBean(<span class="string">"helloWorld"</span>)<span class="comment">;</span></span><br><span class="line">      obj.getMessage()<span class="comment">;</span></span><br><span class="line">      <span class="built_in">context</span>.registerShutdownHook()<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="默认的初始化和销毁方法"><a href="#默认的初始化和销毁方法" class="headerlink" title="默认的初始化和销毁方法"></a>默认的初始化和销毁方法</h5><p>&#160; &#160; &#160; &#160;如果你有太多具有相同名称的初始化或者销毁方法的 Bean，那么你不需要在每一个 bean 上声明初始化方法和销毁方法。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">default-init-method</span>=<span class="string">"init"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">default-destroy-method</span>=<span class="string">"destroy"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"..."</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span></span><br><span class="line">       <span class="comment">&lt;!-- collaborators and configuration for this bean go here --&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="定义继承"><a href="#定义继承" class="headerlink" title="定义继承"></a>定义继承</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;helloIndia&quot; class=&quot;com.tutorialspoint.HelloIndia&quot; parent=&quot;helloWorld&quot;&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spring/" rel="tag"> spring</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/29/springboot学习(一)/" rel="next" title="springboot学习(一)">
+                <i class="fa fa-chevron-left"></i> springboot学习(一)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://img5.duitang.com/uploads/item/201412/28/20141228131249_chS2R.thumb.700_0.jpeg"
+                alt="sighzh" />
+            
+              <p class="site-author-name" itemprop="name">sighzh</p>
+              <p class="site-description motion-element" itemprop="description">初入门的小菜鸟❤</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sighzh" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://weibo.com/your-user-name" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-globe"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://douban.com/people/your-user-name" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-globe"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.zhihu.com/people/your-user-name" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wangli0.github.com" title="Java学习天地" target="_blank">Java学习天地</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#spring模块结构"><span class="nav-number">1.</span> <span class="nav-text">spring模块结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IOC容器"><span class="nav-number">1.1.</span> <span class="nav-text">IOC容器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BeanFactory"><span class="nav-number">1.1.1.</span> <span class="nav-text">BeanFactory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一个简单的例子"><span class="nav-number">1.1.2.</span> <span class="nav-text">一个简单的例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HelloWorld-java"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">HelloWorld.java</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#main-java"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">main.java</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Beans-xml"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">Beans.xml</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ApplicationContext"><span class="nav-number">1.1.3.</span> <span class="nav-text">ApplicationContext</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一个简单的例子-1"><span class="nav-number">1.1.4.</span> <span class="nav-text">一个简单的例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#FileSystemXmlApplicationContext"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">FileSystemXmlApplicationContext</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ClassPathXmlApplicationContext"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">ClassPathXmlApplicationContext</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#WebXmlXmlApplicationContext"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">WebXmlXmlApplicationContext</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bean的作用域"><span class="nav-number">1.1.5.</span> <span class="nav-text">Bean的作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#scope使用方法"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">scope使用方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生命周期"><span class="nav-number">1.1.6.</span> <span class="nav-text">生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#销毁"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">销毁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#下面是例子"><span class="nav-number">1.1.6.3.</span> <span class="nav-text">下面是例子</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#默认的初始化和销毁方法"><span class="nav-number">1.1.6.4.</span> <span class="nav-text">默认的初始化和销毁方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义继承"><span class="nav-number">1.1.7.</span> <span class="nav-text">定义继承</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sighzh</span>
+
+<!--  
+  -->
+</div>
+
+<div class="powered-by">
+
+<span id="busuanzi_container_site_pv">
+
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+
+</span>
+
+</div>
+<div class="theme-info">
+
+  <div class="powered-by"></div>
+
+  <span class="post-count">博客全站共5.4k字</span>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
+<script type="text/javascript" src="/js/src/custom.js"></script>
+
+  <!--崩溃欺骗-->
+  <script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+
+</body>
+</html>
