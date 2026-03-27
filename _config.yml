@@ -103,3 +103,28 @@ sitemap:
 # Deployment
 deploy:
   type: ''
+
+# Symbols count time (word count & reading time)
+# Dependencies: hexo-word-counter
+symbols_count_time:
+  separated_meta: true
+  item_text_post: true
+  item_text_total: true
+  awl: 4
+  wpm: 275
+
+# Archive Generator
+archive_generator:
+  enabled: true
+  per_page: 10
+  yearly: true
+  monthly: true
+  daily: false
+
+# Tag Generator
+tag_generator:
+  per_page: 10
+
+# Category Generator
+category_generator:
+  per_page: 10
