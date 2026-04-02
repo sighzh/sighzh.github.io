@@ -2,7 +2,9 @@
 title: MoviePilot 媒体库架构与经验总结
 date: 2026-03-31 12:00:00
 tags:
-  - 技术
+  - NAS
+  - Docker
+  - MoviePilot
 categories:
   - 技术
 ---
@@ -47,7 +49,7 @@ categories:
 ### MoviePilot 环境变量 (app.env)
 ```
 PROXY_HOST=http://sing-box-proxy:7890    # 代理地址（必须用容器名，不是host.docker.internal）
-TMDB_API_KEY=5dd46ab98971e3432bc3ade376cedc64
+TMDB_API_KEY=${TMDB_API_KEY}
 GITHUB_PROXY=https://gh-proxy.com/       # GitHub 下载镜像
 NO_PROXY=localhost,127.0.0.1,...,sing-box-proxy,.iyuu.cn,.m-team.cc
 ```
@@ -60,7 +62,7 @@ NO_PROXY=localhost,127.0.0.1,...,sing-box-proxy,.iyuu.cn,.m-team.cc
   "config": {
     "host": "http://172.22.0.4:8085",  // ⚠️ 用IP不用容器名（Docker DNS不稳定）
     "username": "admin",
-    "password": "ZHouhao12!",
+    "password": "${QB_PASSWORD}",
     "category": true
   }
 }
