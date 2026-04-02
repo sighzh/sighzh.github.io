@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sighzh.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"monokai-sublime"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null,"show_result":true},"fold":{"enable":false,"height":500},"language":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="MoviePilot 媒体库架构与经验总结 整理时间：2026-03-22 17:00 | 来源：一整天的调试和踩坑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MoviePilot 媒体库架构与经验总结">
+<meta property="og:url" content="https://sighzh.github.io/2026/03/31/2026-03-31-moviepilot-architecture/index.html">
+<meta property="og:site_name" content="叶渝泽de博客">
+<meta property="og:description" content="MoviePilot 媒体库架构与经验总结 整理时间：2026-03-22 17:00 | 来源：一整天的调试和踩坑">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-31T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-02T17:58:08.887Z">
+<meta property="article:author" content="sigh">
+<meta property="article:tag" content="NAS">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="MoviePilot">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sighzh.github.io/2026/03/31/2026-03-31-moviepilot-architecture/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sighzh.github.io/2026/03/31/2026-03-31-moviepilot-architecture/","path":"2026/03/31/2026-03-31-moviepilot-architecture/","title":"MoviePilot 媒体库架构与经验总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MoviePilot 媒体库架构与经验总结 | 叶渝泽de博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="叶渝泽de博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">叶渝泽de博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我的幻想更宽，寂寞也就更大了</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MoviePilot-%E5%AA%92%E4%BD%93%E5%BA%93%E6%9E%B6%E6%9E%84%E4%B8%8E%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">MoviePilot 媒体库架构与经验总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">系统架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E6%B8%85%E5%8D%95"><span class="nav-number">1.1.1.</span> <span class="nav-text">容器清单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E6%98%A0%E5%B0%84"><span class="nav-number">1.1.2.</span> <span class="nav-text">目录映射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">关键配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MoviePilot-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-app-env"><span class="nav-number">1.2.1.</span> <span class="nav-text">MoviePilot 环境变量 (app.env)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#qBittorrent-%E4%B8%8B%E8%BD%BD%E5%99%A8%E9%85%8D%E7%BD%AE-user-db"><span class="nav-number">1.2.2.</span> <span class="nav-text">qBittorrent 下载器配置 (user.db)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AA%92%E4%BD%93%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE-user-db"><span class="nav-number">1.2.3.</span> <span class="nav-text">媒体目录配置 (user.db)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95%EF%BC%88%E8%A1%80%E6%B3%AA%E6%95%99%E8%AE%AD%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">踩坑记录（血泪教训）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B4-Docker-%E7%BD%91%E7%BB%9C%E9%9A%94%E7%A6%BB%EF%BC%88%E5%8F%8D%E5%A4%8D%E5%87%BA%E7%8E%B03%E6%AC%A1%EF%BC%89"><span class="nav-number">1.3.1.</span> <span class="nav-text">🔴 Docker 网络隔离（反复出现3次）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B4-Docker-DNS-%E9%97%B4%E6%AD%87%E6%80%A7%E6%95%85%E9%9A%9C"><span class="nav-number">1.3.2.</span> <span class="nav-text">🔴 Docker DNS 间歇性故障</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B4-MoviePilot-%E5%8F%AA%E8%AE%A4%E5%B8%A6-MOVIEPILOT-tag-%E7%9A%84%E7%A7%8D%E5%AD%90"><span class="nav-number">1.3.3.</span> <span class="nav-text">🔴 MoviePilot 只认带 MOVIEPILOT tag 的种子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B4-MoviePilot-%E5%8F%AA%E8%AE%A4-seeding-%E7%8A%B6%E6%80%81%EF%BC%8C%E4%B8%8D%E8%AE%A4-stoppedUP"><span class="nav-number">1.3.4.</span> <span class="nav-text">🔴 MoviePilot 只认 seeding 状态，不认 stoppedUP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9F%A1-%E7%A1%AC%E9%93%BE%E6%8E%A5%E8%B7%A8%E8%AE%BE%E5%A4%87%E5%A4%B1%E8%B4%A5"><span class="nav-number">1.3.5.</span> <span class="nav-text">🟡 硬链接跨设备失败</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9F%A1-app-env-%E9%85%8D%E7%BD%AE%E6%AE%8B%E7%95%99"><span class="nav-number">1.3.6.</span> <span class="nav-text">🟡 app.env 配置残留</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9F%A1-TMDB-API-Key-%E8%AF%AF%E5%88%A4"><span class="nav-number">1.3.7.</span> <span class="nav-text">🟡 TMDB API Key 误判</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9F%A2-GitHub-%E4%B8%8B%E8%BD%BD%E6%85%A2"><span class="nav-number">1.3.8.</span> <span class="nav-text">🟢 GitHub 下载慢</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E6%B5%81%E7%A8%8B%E9%85%8D%E7%BD%AE%E6%B8%85%E5%8D%95"><span class="nav-number">1.4.</span> <span class="nav-text">全流程配置清单</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Docker-Compose-%E7%BD%91%E7%BB%9C"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. Docker Compose 网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-qBittorrent"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. qBittorrent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-MoviePilot"><span class="nav-number">1.4.3.</span> <span class="nav-text">3. MoviePilot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Jellyfin"><span class="nav-number">1.4.4.</span> <span class="nav-text">4. Jellyfin</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%93%E5%89%8D%E7%8A%B6%E6%80%81%EF%BC%882026-03-22-17-00%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">当前状态（2026-03-22 17:00）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E9%97%A8%E5%8D%8F%E4%BD%9C%E6%80%BB%E7%BB%93"><span class="nav-number">1.6.</span> <span class="nav-text">部门协作总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E9%83%A8-%F0%9F%8F%97%EF%B8%8F"><span class="nav-number">1.6.1.</span> <span class="nav-text">工部 🏗️</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%91%E9%83%A8-%F0%9F%97%A1%EF%B8%8F"><span class="nav-number">1.6.2.</span> <span class="nav-text">刑部 🗡️</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E4%B9%A6%E7%9C%81-%E2%9C%8D%EF%B8%8F"><span class="nav-number">1.6.3.</span> <span class="nav-text">中书省 ✍️</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9A%B4%E8%BA%81%E9%AB%98%E8%BE%BE-%F0%9F%94%A7"><span class="nav-number">1.6.4.</span> <span class="nav-text">暴躁高达 🔧</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">sigh</p>
+  <div class="site-description" itemprop="description">初入门的小菜鸟</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sighzh" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sighzh" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sighzh.github.io/2026/03/31/2026-03-31-moviepilot-architecture/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="sigh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="叶渝泽de博客">
+      <meta itemprop="description" content="初入门的小菜鸟">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MoviePilot 媒体库架构与经验总结 | 叶渝泽de博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MoviePilot 媒体库架构与经验总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-03-31 12:00:00" itemprop="dateCreated datePublished" datetime="2026-03-31T12:00:00+08:00">2026-03-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-04-03 01:58:08" itemprop="dateModified" datetime="2026-04-03T01:58:08+08:00">2026-04-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="MoviePilot-媒体库架构与经验总结"><a href="#MoviePilot-媒体库架构与经验总结" class="headerlink" title="MoviePilot 媒体库架构与经验总结"></a>MoviePilot 媒体库架构与经验总结</h1><blockquote>
+<p>整理时间：2026-03-22 17:00 | 来源：一整天的调试和踩坑</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">搜索(M-Team) → qBittorrent(下载) → MoviePilot(刮削+整理) → Jellyfin(播放)</span><br><span class="line">                    ↑                      ↑</span><br><span class="line">               sing-box-proxy(代理)    TMDB API(元数据)</span><br></pre></td></tr></table></figure>
+
+<h3 id="容器清单"><a href="#容器清单" class="headerlink" title="容器清单"></a>容器清单</h3><table>
+<thead>
+<tr>
+<th>容器</th>
+<th>网络</th>
+<th>端口</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>moviepilot</td>
+<td>media_net</td>
+<td>3000</td>
+<td>媒体调度核心</td>
+</tr>
+<tr>
+<td>jellyfin</td>
+<td>media_net</td>
+<td>8096</td>
+<td>媒体播放服务器</td>
+</tr>
+<tr>
+<td>qbittorrent</td>
+<td>media_net</td>
+<td>8085</td>
+<td>BT&#x2F;PT 下载器</td>
+</tr>
+<tr>
+<td>clouddrive2</td>
+<td>media_net</td>
+<td>19798</td>
+<td>云盘挂载(阿里&#x2F;115)</td>
+</tr>
+<tr>
+<td>sing-box-proxy</td>
+<td>media_net + client_default</td>
+<td>7890&#x2F;7891</td>
+<td>代理(双宿主)</td>
+</tr>
+</tbody></table>
+<h3 id="目录映射"><a href="#目录映射" class="headerlink" title="目录映射"></a>目录映射</h3><table>
+<thead>
+<tr>
+<th>路径</th>
+<th>容器内</th>
+<th>宿主机</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>下载目录</td>
+<td>&#x2F;downloads&#x2F;complete&#x2F;</td>
+<td>&#x2F;vol1&#x2F;media&#x2F;downloads&#x2F;complete&#x2F;</td>
+<td>qBittorrent 下载完成</td>
+</tr>
+<tr>
+<td>电影库</td>
+<td>&#x2F;media&#x2F;movies&#x2F;</td>
+<td>&#x2F;vol1&#x2F;media&#x2F;movies&#x2F;</td>
+<td>电影整理目标</td>
+</tr>
+<tr>
+<td>电视剧库</td>
+<td>&#x2F;media&#x2F;tv&#x2F;</td>
+<td>&#x2F;vol1&#x2F;media&#x2F;tv&#x2F;</td>
+<td>电视剧整理目标</td>
+</tr>
+<tr>
+<td>动漫库</td>
+<td>&#x2F;media&#x2F;anime&#x2F;</td>
+<td>&#x2F;vol1&#x2F;media&#x2F;anime&#x2F;</td>
+<td>动漫整理目标</td>
+</tr>
+<tr>
+<td>纪录片库</td>
+<td>&#x2F;media&#x2F;documentary&#x2F;</td>
+<td>&#x2F;vol1&#x2F;media&#x2F;documentary&#x2F;</td>
+<td>纪录片整理目标</td>
+</tr>
+<tr>
+<td>云盘</td>
+<td>&#x2F;cloud&#x2F;</td>
+<td>&#x2F;vol1&#x2F;cloud&#x2F;</td>
+<td>CloudDrive2 挂载点</td>
+</tr>
+</tbody></table>
+<h2 id="关键配置"><a href="#关键配置" class="headerlink" title="关键配置"></a>关键配置</h2><h3 id="MoviePilot-环境变量-app-env"><a href="#MoviePilot-环境变量-app-env" class="headerlink" title="MoviePilot 环境变量 (app.env)"></a>MoviePilot 环境变量 (app.env)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PROXY_HOST=http://sing-box-proxy:7890    # 代理地址（必须用容器名，不是host.docker.internal）</span><br><span class="line">TMDB_API_KEY=$&#123;TMDB_API_KEY&#125;</span><br><span class="line">GITHUB_PROXY=https://gh-proxy.com/       # GitHub 下载镜像</span><br><span class="line">NO_PROXY=localhost,127.0.0.1,...,sing-box-proxy,.iyuu.cn,.m-team.cc</span><br></pre></td></tr></table></figure>
+
+<h3 id="qBittorrent-下载器配置-user-db"><a href="#qBittorrent-下载器配置-user-db" class="headerlink" title="qBittorrent 下载器配置 (user.db)"></a>qBittorrent 下载器配置 (user.db)</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;qb&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;qbittorrent&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;config&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;host&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://172.22.0.4:8085&quot;</span><span class="punctuation">,</span>  <span class="comment">// ⚠️ 用IP不用容器名（Docker DNS不稳定）</span></span><br><span class="line">    <span class="attr">&quot;username&quot;</span><span class="punctuation">:</span> <span class="string">&quot;admin&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;QB_PASSWORD&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;category&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="媒体目录配置-user-db"><a href="#媒体目录配置-user-db" class="headerlink" title="媒体目录配置 (user.db)"></a>媒体目录配置 (user.db)</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;电影&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;download_path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/downloads/complete/&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;library_path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/media/movies/&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;monitor_type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;downloader&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;media_type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;电影&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;transfer_type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;softlink&quot;</span><span class="punctuation">,</span>  <span class="comment">// ⚠️ 不能用link（跨设备硬链接失败）</span></span><br><span class="line">  <span class="attr">&quot;renaming&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;scraping&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="踩坑记录（血泪教训）"><a href="#踩坑记录（血泪教训）" class="headerlink" title="踩坑记录（血泪教训）"></a>踩坑记录（血泪教训）</h2><h3 id="🔴-Docker-网络隔离（反复出现3次）"><a href="#🔴-Docker-网络隔离（反复出现3次）" class="headerlink" title="🔴 Docker 网络隔离（反复出现3次）"></a>🔴 Docker 网络隔离（反复出现3次）</h3><p><strong>问题</strong>：容器间无法通信，DNS 解析失败，代理不通<br><strong>根因</strong>：不同 Docker Compose 项目的容器在不同 bridge 网络上<br><strong>表现</strong>：</p>
+<ul>
+<li><code>sing-box-proxy</code> 在 <code>client_default</code>，MoviePilot 在 <code>media_net</code> → DNS 解析不了</li>
+<li><code>host.docker.internal</code> 解析到 172.17.0.1（默认 bridge 网关），不是 media_net 网关</li>
+<li>容器内从 172.22.0.1 连代理超时</li>
+</ul>
+<p><strong>解决方案</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network connect movie-pilot-v2_media_net sing-box-proxy</span><br></pre></td></tr></table></figure>
+
+<p><strong>教训</strong>：所有需要互相通信的容器必须在同一网络。docker-compose.yml 应该引用外部网络或共享网络。</p>
+<h3 id="🔴-Docker-DNS-间歇性故障"><a href="#🔴-Docker-DNS-间歇性故障" class="headerlink" title="🔴 Docker DNS 间歇性故障"></a>🔴 Docker DNS 间歇性故障</h3><p><strong>问题</strong>：MoviePilot 偶尔解析不到 <code>qbittorrent</code> 主机名，transfer 任务静默失败<br><strong>表现</strong>：<code>socket.gethostbyname(&#39;qbittorrent&#39;)</code> 偶尔报 <code>Temporary failure in name resolution</code><br><strong>解决方案</strong>：qBittorrent 连接地址从容器名改成 IP（172.22.0.4）<br><strong>教训</strong>：Docker 内置 DNS (127.0.0.11) 不可靠，关键服务用 IP</p>
+<h3 id="🔴-MoviePilot-只认带-MOVIEPILOT-tag-的种子"><a href="#🔴-MoviePilot-只认带-MOVIEPILOT-tag-的种子" class="headerlink" title="🔴 MoviePilot 只认带 MOVIEPILOT tag 的种子"></a>🔴 MoviePilot 只认带 MOVIEPILOT tag 的种子</h3><p><strong>问题</strong>：清理完 qBittorrent 种子后，transfer 还是报”没有已完成下载”<br><strong>根因</strong>：MoviePilot 的 <code>get_completed_torrents()</code> 调用时传了 <code>tags=settings.TORRENT_TAG</code>（&#x3D; “MOVIEPILOT”），只有带这个 tag 的种子才会被处理<br><strong>代码位置</strong>：<code>/app/app/modules/qbittorrent/__init__.py:278</code><br><strong>解决方案</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.torrents_add_tags(tags=<span class="string">&#x27;MOVIEPILOT&#x27;</span>, torrent_hashes=hashes)</span><br></pre></td></tr></table></figure>
+<p><strong>教训</strong>：旧迁移的种子不会自动带 MOVIEPILOT tag，必须手动添加</p>
+<h3 id="🔴-MoviePilot-只认-seeding-状态，不认-stoppedUP"><a href="#🔴-MoviePilot-只认-seeding-状态，不认-stoppedUP" class="headerlink" title="🔴 MoviePilot 只认 seeding 状态，不认 stoppedUP"></a>🔴 MoviePilot 只认 seeding 状态，不认 stoppedUP</h3><p><strong>问题</strong>：qBittorrent 中已完成种子状态是 <code>stoppedUP</code>（手动停止），MoviePilot 不认<br><strong>根因</strong>：<code>get_completed_torrents()</code> 使用 <code>status_filter=&quot;seeding&quot;</code>，而 <code>stoppedUP</code> 不在其中<br><strong>代码位置</strong>：<code>/app/app/modules/qbittorrent/qbittorrent.py:124-125</code><br><strong>解决方案</strong>：恢复种子（resume），让状态从 <code>stoppedUP</code> → <code>stalledUP</code><br><strong>教训</strong>：MoviePilot 要求种子处于做种状态（stalledUP&#x2F;uploading），不能手动停止</p>
+<h3 id="🟡-硬链接跨设备失败"><a href="#🟡-硬链接跨设备失败" class="headerlink" title="🟡 硬链接跨设备失败"></a>🟡 硬链接跨设备失败</h3><p><strong>问题</strong>：<code>transfer_type=&quot;link&quot;</code> 报 <code>Invalid cross-device link</code><br><strong>根因</strong>：Docker 的每个 volume bindmount 是独立的挂载点，即使宿主机同一文件系统<br><strong>解决方案</strong>：改用 <code>transfer_type=&quot;softlink&quot;</code>（软链接）<br><strong>教训</strong>：Docker 容器内硬链接不可靠，用软链接更稳妥</p>
+<h3 id="🟡-app-env-配置残留"><a href="#🟡-app-env-配置残留" class="headerlink" title="🟡 app.env 配置残留"></a>🟡 app.env 配置残留</h3><p><strong>问题</strong>：app.env 中 <code>PROXY_HOST=http://host.docker.internal:7890</code>，但实际需要 <code>sing-box-proxy:7890</code><br><strong>表现</strong>：环境变量覆盖了 app.env 所以暂时正常，但不一致<br><strong>解决方案</strong>：手动修改 app.env 保持一致<br><strong>教训</strong>：环境变量优先级高于 app.env，但配置文件应该一致</p>
+<h3 id="🟡-TMDB-API-Key-误判"><a href="#🟡-TMDB-API-Key-误判" class="headerlink" title="🟡 TMDB API Key 误判"></a>🟡 TMDB API Key 误判</h3><p><strong>问题</strong>：中书省报告说 TMDB Key 失效，实际是代理不通<br><strong>根因</strong>：测试时 Docker 网络隔离导致代理不通，不是 Key 问题<br><strong>教训</strong>：诊断问题要排除网络因素，不要直接跳到结论</p>
+<h3 id="🟢-GitHub-下载慢"><a href="#🟢-GitHub-下载慢" class="headerlink" title="🟢 GitHub 下载慢"></a>🟢 GitHub 下载慢</h3><p><strong>数据</strong>：</p>
+<ul>
+<li>走代理隧道（sing-box）：~14KB&#x2F;s（Vless-Reality）</li>
+<li>gh-proxy.com（绕过隧道）：~96KB&#x2F;s</li>
+<li>切 Hysteria2 后：~289KB&#x2F;s</li>
+<li>VPS 直连 GitHub：663KB&#x2F;s</li>
+</ul>
+<p><strong>结论</strong>：sing-box 隧道是瓶颈，Hysteria2 (QUIC) 比 Vless-Reality (TCP) 快 140 倍<br><strong>教训</strong>：VPS 内核 3.10 不支持 BBR，TCP 在高丢包环境下极其脆弱</p>
+<h2 id="全流程配置清单"><a href="#全流程配置清单" class="headerlink" title="全流程配置清单"></a>全流程配置清单</h2><h3 id="1-Docker-Compose-网络"><a href="#1-Docker-Compose-网络" class="headerlink" title="1. Docker Compose 网络"></a>1. Docker Compose 网络</h3><ul>
+<li>所有 media 相关容器加入同一网络（media_net）</li>
+<li>sing-box-proxy 需要同时连接 media_net 和自己的网络</li>
+</ul>
+<h3 id="2-qBittorrent"><a href="#2-qBittorrent" class="headerlink" title="2. qBittorrent"></a>2. qBittorrent</h3><ul>
+<li>新下载的种子自动带 MOVIEPILOT tag（通过 MoviePilot 配置）</li>
+<li>已有种子需要手动加 tag</li>
+<li>不能手动停止种子（要保持 stalledUP 状态）</li>
+</ul>
+<h3 id="3-MoviePilot"><a href="#3-MoviePilot" class="headerlink" title="3. MoviePilot"></a>3. MoviePilot</h3><ul>
+<li>下载器 host 用 IP 不用容器名</li>
+<li>目录配置 transfer_type&#x3D;”softlink”</li>
+<li>PROXY_HOST 指向代理容器</li>
+</ul>
+<h3 id="4-Jellyfin"><a href="#4-Jellyfin" class="headerlink" title="4. Jellyfin"></a>4. Jellyfin</h3><ul>
+<li>媒体库已自动创建（电影&#x2F;电视剧&#x2F;动漫&#x2F;纪录片）</li>
+<li>路径映射与 MoviePilot 一致</li>
+<li>TMDB 元数据自动同步</li>
+</ul>
+<h2 id="当前状态（2026-03-22-17-00）"><a href="#当前状态（2026-03-22-17-00）" class="headerlink" title="当前状态（2026-03-22 17:00）"></a>当前状态（2026-03-22 17:00）</h2><ul>
+<li>✅ TMDB 刮削正常</li>
+<li>✅ MoviePilot transfer 正常（34条记录，31成功）</li>
+<li>✅ Jellyfin 媒体库有内容（4部电视剧+1部电影）</li>
+<li>✅ 代理走 Hysteria2（289KB&#x2F;s）</li>
+<li>⏳ 54个下载中的种子完成后自动入库</li>
+<li>⏳ Hysteria2 TLS 待工部修复</li>
+<li>⏳ CloudDrive2 云盘待配置</li>
+</ul>
+<h2 id="部门协作总结"><a href="#部门协作总结" class="headerlink" title="部门协作总结"></a>部门协作总结</h2><h3 id="工部-🏗️"><a href="#工部-🏗️" class="headerlink" title="工部 🏗️"></a>工部 🏗️</h3><ul>
+<li>隧道优化（Vless→HY2，140倍提速）</li>
+<li>qBittorrent 清理（128→81种子，missingFiles清零）</li>
+<li>安全修复（Docker镜像锁定、bash_history清理）</li>
+<li>扣分：留尾巴（没验证qBittorrent连接）</li>
+</ul>
+<h3 id="刑部-🗡️"><a href="#刑部-🗡️" class="headerlink" title="刑部 🗡️"></a>刑部 🗡️</h3><ul>
+<li>网络隔离诊断</li>
+<li>隧道速度诊断（发现BBR缺失+高丢包）</li>
+<li>存量安全修复方案（insecure:true + API Key + 供应链）</li>
+<li>+3分（快速交付高质量报告）</li>
+</ul>
+<h3 id="中书省-✍️"><a href="#中书省-✍️" class="headerlink" title="中书省 ✍️"></a>中书省 ✍️</h3><ul>
+<li>MoviePilot 全链路方案（首次返工：TMDB分析错误+缺迁移方案+缺Jellyfin配置）</li>
+<li>qBittorrent 种子迁移方案（重做通过）</li>
+<li>Jellyfin 配置方案（重做通过）</li>
+<li>-4分（首次返工扣分严重）</li>
+</ul>
+<h3 id="暴躁高达-🔧"><a href="#暴躁高达-🔧" class="headerlink" title="暴躁高达 🔧"></a>暴躁高达 🔧</h3><ul>
+<li>发现 sing-box-proxy 网络隔离问题（直接修复）</li>
+<li>发现 MOVIEPILOT tag 缺失问题</li>
+<li>发现 transfer_type 未配置问题</li>
+<li>发现种子 stoppedUP 状态问题</li>
+<li>教训：不该自己干的活要派部门，但小事直接干比派部门更快</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/NAS/" rel="tag"># NAS</a>
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+              <a href="/tags/MoviePilot/" rel="tag"># MoviePilot</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/27/cron-timeout-retrospective/" rel="prev" title="一次 cron 超时的排查复盘 — 从晨报截断到自我提升系统设计">
+                  <i class="fa fa-angle-left"></i> 一次 cron 超时的排查复盘 — 从晨报截断到自我提升系统设计
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/31/2026-03-31-lessons/" rel="next" title="Lessons — 教训汇总">
+                  Lessons — 教训汇总 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">sigh</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">4k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">14 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
