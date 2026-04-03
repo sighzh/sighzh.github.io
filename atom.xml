@@ -10,7 +10,7 @@
   <rights>All rights reserved 2026, sigh</rights>
   <subtitle>我的幻想更宽，寂寞也就更大了</subtitle>
   <title>叶渝泽de博客</title>
-  <updated>2026-04-03T05:26:03.885Z</updated>
+  <updated>2026-04-03T05:26:19.006Z</updated>
   <entry>
     <author>
       <name>sigh</name>
@@ -30,7 +30,7 @@
 </blockquote>]]>
     </summary>
     <title>AI短剧工作流踩坑记录</title>
-    <updated>2026-04-03T05:26:03.885Z</updated>
+    <updated>2026-04-03T05:26:19.006Z</updated>
   </entry>
   <entry>
     <author>
@@ -50,7 +50,7 @@
 </blockquote>]]>
     </summary>
     <title>Lessons — 教训汇总</title>
-    <updated>2026-04-02T17:24:11.384Z</updated>
+    <updated>2026-04-03T05:26:19.006Z</updated>
   </entry>
   <entry>
     <author>
@@ -72,7 +72,7 @@
 </blockquote>]]>
     </summary>
     <title>MoviePilot 媒体库架构与经验总结</title>
-    <updated>2026-04-02T17:58:08.887Z</updated>
+    <updated>2026-04-03T05:26:19.006Z</updated>
   </entry>
   <entry>
     <author>
@@ -93,7 +93,7 @@
 <p>第一反应：模型抽风？网络抖动？还是 token]]>
     </summary>
     <title>一次 cron 超时的排查复盘 — 从晨报截断到自我提升系统设计</title>
-    <updated>2026-03-27T01:38:14.350Z</updated>
+    <updated>2026-04-03T05:26:19.006Z</updated>
   </entry>
   <entry>
     <author>
@@ -114,7 +114,7 @@
       <![CDATA[<p>折腾了一段时间的家庭影音方案，现在基本稳定了，记录一下整体架构。</p>]]>
     </summary>
     <title>家庭影音方案架构</title>
-    <updated>2026-04-02T17:27:36.851Z</updated>
+    <updated>2026-04-03T05:26:19.006Z</updated>
   </entry>
   <entry>
     <author>
@@ -133,6 +133,6 @@
 <p>这是用 <a href="https://hexo.io/">Hexo</a> + <a href="https://theme-next.js.org/">NexT</a> 主题搭建的静态博客，部署在 GitHub Pages 上。</p>]]>
     </summary>
     <title>Hello World</title>
-    <updated>2026-03-24T07:46:51.640Z</updated>
+    <updated>2026-04-03T05:26:19.006Z</updated>
   </entry>
 </feed>

@@ -2,7 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://sighzh.github.io/2026/04/03/2026-04-03-ai-drama-lessons/</loc>
+    <loc>https://sighzh.github.io/2026/03/24/2026-03-24-hello-world/</loc>
+    
+    <lastmod>2026-04-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sighzh.github.io/2026/03/24/2026-03-24-home-media-architecture/</loc>
+    
+    <lastmod>2026-04-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sighzh.github.io/2026/03/31/2026-03-31-lessons/</loc>
     
     <lastmod>2026-04-03</lastmod>
     
@@ -13,43 +31,16 @@
   <url>
     <loc>https://sighzh.github.io/2026/03/31/2026-03-31-moviepilot-architecture/</loc>
     
-    <lastmod>2026-04-02</lastmod>
+    <lastmod>2026-04-03</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sighzh.github.io/2026/03/24/2026-03-24-home-media-architecture/</loc>
+    <loc>https://sighzh.github.io/2026/04/03/2026-04-03-ai-drama-lessons/</loc>
     
-    <lastmod>2026-04-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sighzh.github.io/2026/03/31/2026-03-31-lessons/</loc>
-    
-    <lastmod>2026-04-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sighzh.github.io/categories/index.html</loc>
-    
-    <lastmod>2026-03-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sighzh.github.io/tags/index.html</loc>
-    
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-03</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -58,16 +49,25 @@
   <url>
     <loc>https://sighzh.github.io/2026/03/27/cron-timeout-retrospective/</loc>
     
-    <lastmod>2026-03-27</lastmod>
+    <lastmod>2026-04-03</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sighzh.github.io/2026/03/24/2026-03-24-hello-world/</loc>
+    <loc>https://sighzh.github.io/tags/index.html</loc>
     
-    <lastmod>2026-03-24</lastmod>
+    <lastmod>2026-04-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sighzh.github.io/categories/index.html</loc>
+    
+    <lastmod>2026-04-03</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -132,6 +132,20 @@
   </url>
   
   <url>
+    <loc>https://sighzh.github.io/tags/ai-drama/</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sighzh.github.io/tags/lesson/</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://sighzh.github.io/tags/OpenClaw/</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>weekly</changefreq>
@@ -147,20 +161,6 @@
   
   <url>
     <loc>https://sighzh.github.io/tags/%E8%87%AA%E6%88%91%E6%8F%90%E5%8D%87/</loc>
-    <lastmod>2026-04-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sighzh.github.io/tags/ai-drama/</loc>
-    <lastmod>2026-04-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sighzh.github.io/tags/lesson/</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
