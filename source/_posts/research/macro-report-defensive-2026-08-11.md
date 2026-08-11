@@ -1,13 +1,13 @@
 ---
 title: 宏观策略研报 — 防御性配置 (2026-08-11)
-date: 2026-08-11 21:33
+date: 2026-08-11 21:38
 categories:
   - 研报
 tags:
   - 宏观
   - defensive
   - 防御性配置
-cover: https://images.pexels.com/photos/534220/pexels-photo-534220.jpeg?auto=compress&cs=tinysrgb&w=1200
+cover: /img/cover-research.jpg
 ---
 > **策略**: 防御性配置
 > **核心假设**: 货币宽松是接下来6-12个月最确定的主线

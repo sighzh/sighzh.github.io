@@ -146,7 +146,7 @@ avatar:
 disable_top_img: false
 
 # The banner image of home page
-index_img: https://images.pexels.com/photos/534220/pexels-photo-534220.jpeg?auto=compress&cs=tinysrgb&w=1920
+index_img: /img/banner-finance.jpg
 
 # If the banner of page not setting, it will show the top_img
 default_top_img: false
@@ -161,11 +161,9 @@ cover:
   position: left
   # When cover is not set, the default cover is displayed (当没有设置cover时，默认的封面显示)
   default_cover:
-    - https://images.pexels.com/photos/534220/pexels-photo-534220.jpeg?auto=compress&cs=tinysrgb&w=1200
-    - https://images.pexels.com/photos/186461/pexels-photo-186461.jpeg?auto=compress&cs=tinysrgb&w=1200
-    - https://images.pexels.com/photos/210607/pexels-photo-210607.jpeg?auto=compress&cs=tinysrgb&w=1200
-    - https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1200
-    - https://picsum.photos/1200/800?random=1
+    - /img/cover-research.jpg
+    - /img/cover-tech.jpg
+    - /img/banner-finance.jpg
 
 # Replace Broken Images (替换无法显示的图片)
 error_img:

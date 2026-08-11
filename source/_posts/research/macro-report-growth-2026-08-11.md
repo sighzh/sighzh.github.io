@@ -1,13 +1,13 @@
 ---
 title: 宏观策略研报 — 成长性配置 (2026-08-11)
-date: 2026-08-11 21:33
+date: 2026-08-11 21:38
 categories:
   - 研报
 tags:
   - 宏观
   - growth
   - 成长性配置
-cover: https://images.pexels.com/photos/534220/pexels-photo-534220.jpeg?auto=compress&cs=tinysrgb&w=1200
+cover: /img/cover-research.jpg
 ---
 > **策略**: 成长性配置
 > **核心假设**: 产业升级+AI/科技/创新药 是中长期主线
