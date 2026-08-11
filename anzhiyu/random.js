@@ -1,3 +1,3 @@
-var posts=["2026/03/24/2026-03-24-home-media-architecture/","2026/03/31/2026-03-31-moviepilot-architecture/","2026/03/31/2026-03-31-lessons/","2026/04/03/2026-04-03-ai-drama-lessons/","2026/03/27/cron-timeout-retrospective/","2026/08/11/research/macro-report-defensive-2026-08-11/","2026/08/11/research/macro-report-growth-2026-08-11/"];function toRandomPost(){
+var posts=["2026/03/24/2026-03-24-home-media-architecture/","2026/03/31/2026-03-31-lessons/","2026/03/31/2026-03-31-moviepilot-architecture/","2026/04/03/2026-04-03-ai-drama-lessons/","2026/03/27/cron-timeout-retrospective/","2026/08/11/research/macro-report-defensive-2026-08-11/","2026/08/11/research/macro-report-growth-2026-08-11/"];function toRandomPost(){
     pjax.loadUrl('/'+posts[Math.floor(Math.random() * posts.length)]);
   };
