@@ -7,7 +7,7 @@ tags:
   - 宏观
   - defensive
   - 防御性配置
-cover: /img/cover-research.jpg
+cover: /img/cover-research-defensive.jpg
 ---
 > **策略**: 防御性配置
 > **核心假设**: 货币宽松是接下来6-12个月最确定的主线

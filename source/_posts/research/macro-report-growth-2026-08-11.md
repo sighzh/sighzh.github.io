@@ -7,7 +7,7 @@ tags:
   - 宏观
   - growth
   - 成长性配置
-cover: /img/cover-research.jpg
+cover: /img/cover-research-growth.jpg
 ---
 > **策略**: 成长性配置
 > **核心假设**: 产业升级+AI/科技/创新药 是中长期主线

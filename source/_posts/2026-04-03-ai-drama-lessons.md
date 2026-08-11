@@ -4,6 +4,7 @@ date: 2026-04-03 12:00:00
 tags:
   - ai-drama
   - lesson
+cover: /img/cover-ai-drama.jpg
 categories:
   - 技术
 ---

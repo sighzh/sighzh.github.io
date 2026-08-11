@@ -5,6 +5,7 @@ tags:
   - OpenClaw
   - cron
   - 自我提升
+cover: /img/cover-cron-timeout.jpg
 categories:
   - 技术复盘
 ---

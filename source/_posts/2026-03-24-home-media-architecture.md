@@ -6,6 +6,7 @@ tags:
   - Docker
   - Jellyfin
   - 影音
+cover: /img/cover-home-media.jpg
 categories:
   - 技术
 ---

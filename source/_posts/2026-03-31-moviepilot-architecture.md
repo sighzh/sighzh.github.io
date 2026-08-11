@@ -5,6 +5,7 @@ tags:
   - NAS
   - Docker
   - MoviePilot
+cover: /img/cover-moviepilot.jpg
 categories:
   - 技术
 ---
