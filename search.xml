@@ -1,32 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2026/03/24/2026-03-24-hello-world/</url>
-    <content><![CDATA[<p>欢迎来到我的博客！</p>
-<p>这是用 <a href="https://hexo.io/">Hexo</a> + <a href="https://theme-next.js.org/">NexT</a> 主题搭建的静态博客，部署在 GitHub Pages 上。</p>
-<span id="more"></span>
-
-<h2 id="为什么选-Hexo"><a href="#为什么选-Hexo" class="headerlink" title="为什么选 Hexo"></a>为什么选 Hexo</h2><ul>
-<li>纯静态，部署简单</li>
-<li>NexT 主题颜值在线</li>
-<li>Markdown 写文章很舒服</li>
-</ul>
-<h2 id="后续计划"><a href="#后续计划" class="headerlink" title="后续计划"></a>后续计划</h2><ul>
-<li>写点技术笔记</li>
-<li>记录生活</li>
-<li>整理 AI&#x2F;编程方面的学习资料</li>
-</ul>
-<p>就这样，开张了 🎉</p>
-]]></content>
-      <categories>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>测试</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>家庭影音方案架构</title>
     <url>/2026/03/24/2026-03-24-home-media-architecture/</url>
     <content><![CDATA[<p>折腾了一段时间的家庭影音方案，现在基本稳定了，记录一下整体架构。</p>
