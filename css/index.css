@@ -10782,7 +10782,7 @@ h1.page-title + .tag-cloud-list {
   transition: 0.3s;
 }
 #page-header.full_page {
-  height: 100vh;
+  height: 60vh;
   background-attachment: fixed;
   border-radius: 0;
 }
