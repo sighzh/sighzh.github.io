@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://sighzh.github.io/2026/03/27/cron-timeout-retrospective/</loc>
+    <loc>https://sighzh.github.io/2026/03/31/2026-03-31-moviepilot-architecture/</loc>
     
     <lastmod>2026-08-11</lastmod>
     
@@ -47,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://sighzh.github.io/2026/03/31/2026-03-31-moviepilot-architecture/</loc>
+    <loc>https://sighzh.github.io/2026/03/27/cron-timeout-retrospective/</loc>
     
     <lastmod>2026-08-11</lastmod>
     
@@ -141,6 +141,13 @@
   </url>
   
   <url>
+    <loc>https://sighzh.github.io/tags/MoviePilot/</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://sighzh.github.io/tags/OpenClaw/</loc>
     <lastmod>2026-08-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -156,13 +163,6 @@
   
   <url>
     <loc>https://sighzh.github.io/tags/%E8%87%AA%E6%88%91%E6%8F%90%E5%8D%87/</loc>
-    <lastmod>2026-08-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sighzh.github.io/tags/MoviePilot/</loc>
     <lastmod>2026-08-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

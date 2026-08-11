@@ -1,0 +1,7 @@
+/* 自定义 CSS: 强制 banner 背景图显示 */
+#page-header.full_page {
+  background-image: url(/img/banner-finance.jpg) !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
